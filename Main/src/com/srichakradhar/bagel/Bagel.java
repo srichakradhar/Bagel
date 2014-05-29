@@ -31,7 +31,7 @@ public class Bagel extends Activity {
 	Shuffler s = new Shuffler();
 	int[] a = new int[10];
 	int no[] = new int[level];
-	int tries = 0;
+	int tries = 0, score = 0, nogames = 1;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -127,6 +127,10 @@ public class Bagel extends Activity {
 						})
 				.setNegativeButton("No", new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int id) {
+						score += ((10-tries) + (level >= 5 ? level : 1) + (zeroAllowed ? level : 0)) * nogames;
+						Log.d("Score = ",)
+						//score = (1(right guess) + level >=5 + zeroChecked * level) * no. of games
+						Toast.makeText(getApplicationContext(), "Score : " + score, Toast.LENGTH_LONG).show();
 						finish();
 					}
 				}).setCancelable(false);
@@ -141,6 +145,7 @@ public class Bagel extends Activity {
 		a = s.random(zeroAllowed ? 0 : 1);
 		no = Arrays.copyOf(a, level);
 		tries = 0;
+		nogames += 1;
 		historyTextView.setText("");
 		alertTextView.setText("clue");
 	}
@@ -184,6 +189,7 @@ public class Bagel extends Activity {
 			livesTextView.setText(getString(R.string.lives, 10 - tries));
 			ArrayList<String> clues = new ArrayList<String>();
 			if (Arrays.equals(gn, no)) {
+				score += 1;//for getting it right
 				alertTextView.setText("Well Guessed!");
 				showDialog();
 			} else {
