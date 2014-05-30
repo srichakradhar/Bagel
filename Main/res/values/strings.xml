@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="start">start</string>
+    <string name="play_ass">Choosen Level</string>
+    <string name="play">Basic (Level 3)</string>
+    <string name="Instruction">Instructions Shown Here</string>
+    <string name="guess">Think and Guess</string>
+    <string name="makeGuess">Make This Guess</string>
+    <string name="app_name">Bagel</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="guessBtn">Guess</string>
+    <string name="title_activity_bagel">Bagel</string>
+    <string name="history">history</string>
+    <string name="lives">Lives : %d</string>
+    <string name="plus">&#9650;</string>
+    <string name="minus">&#9660;</string>
+    <string name="level">Level</string>
+    <string name="help">Help</string>
+    <string name="zero_allowed">zeroAllowed?</string>
+    <string name="reference">For each guess, you will be told:&lt;br&gt;&lt;/br&gt;
+&lt;b&gt;Fermi&lt;/b&gt;&lt;br&gt;&lt;/br&gt;
+A correct digit placed correctly.&gt;&lt;br&gt;&lt;/br&gt;
+&lt;b&gt;Pico&lt;/b&gt;&lt;br&gt;&lt;/br&gt;
+A correct digit placed incorrectly.&lt;br&gt;&lt;/br&gt;
+&lt;b&gt;Bagels&lt;/b&gt;&lt;br&gt;&lt;/br&gt;
+No digits are correct.&lt;br&gt;&lt;/br&gt;
+&lt;br&gt;&lt;/br&gt;&lt;b&gt;Options&lt;/b&gt;&lt;br&gt;&lt;/br&gt;
+&lt;b&gt;New Game&lt;/b&gt;&lt;br&gt;&lt;/br&gt;
+End current game and Start a new game.&lt;br&gt;&lt;/br&gt;
+&lt;b&gt;Example&lt;/b&gt;&lt;br&gt;&lt;/br&gt;
+zeroAllowed = checked, Level = 3, and number = 029&lt;br&gt;&lt;/br&gt;
+Guess	Result&lt;br&gt;&lt;/br&gt;
+376	Bagels&lt;br&gt;&lt;/br&gt;
+914	Pico&lt;br&gt;&lt;/br&gt;
+820	Fermi Pico&lt;br&gt;&lt;/br&gt;
+...	(keep guessing)&lt;br&gt;&lt;/br&gt;
+092	Fermi Pico Pico&lt;br&gt;&lt;/br&gt;
+029	Fermi Fermi Fermi !!! you won</string>
+    <string name="new_game">New Game</string>
+    <string name="how_to">How to play?</string>
+<string name="basic_help">I(your phone/tab) will generate a random secret number.&#xA;It will have 3 digits.&#xA;No two digits will be same.&#xA;
+    You have to guess that number using my clues(shown in "history").&#xA;Adjust the digits using &#9650; and &#9660; buttons.&#xA;
+    Press "Make This Guess" to tell me your guess.&#xA;You cannot guess same number again and again.&#xA;\t• If I say “bagels”, that means that none of the three digits you guessed is in the secret number.&#xA;\t• If I say “pico”, then one of the digits in your guess is in the secret number, but it is in the wrong place.&#xA;\t• If I say “fermi”, then your guess has a correct digit in the correct place.&#xA;Of course, even if you get a pico or fermi clue, you still don\'t know which digit in your guess is the correct one.&#xA;
+You can also get multiple clues after each guess.&#xA;\t Say the secret number is 456, and your guess is 546. The clues would be “fermi pico pico” because one digit is correct and in the correct place (the digit 6), and two digits are in the secret number but in the wrong place (the digits 4 and 5).&#xA;Press &lt; and &gt; buttons to review these clues while playing.&#xA;Select "New Game" from menu to end current game and start a new game.&#xA;</string>
+<string name="main_help">I(your phone/tab) will generate a random secret number.&#xA;It will have 3 digits.&#xA;No two digits will be same.&#xA;
+    You have to guess that number using my clues(shown in "history").&#xA;\t• If I say “bagels”, that means that none of the three digits you guessed is in the secret number.&#xA;\t• If I say “pico”, then one of the digits in your guess is in the secret number, but it is in the wrong place.&#xA;\t• If I say “fermi”, then your guess has a correct digit in the correct place.&#xA;Of course, even if you get a pico or fermi clue, you still don\'t know which digit in your guess is the correct one.&#xA;
+You can also get multiple clues after each guess.&#xA;\t Say the secret number is 456, and your guess is 546. The clues would be “fermi pico pico” because one digit is correct and in the correct place (the digit 6), and two digits are in the secret number but in the wrong place (the digits 4 and 5).&#xA;Settings for "ADVANCED" type :&#xA;ZERO ALLOWED?&#xA;&#xA;\tBy Default, 0 won\'t be included in the secret number. You can enable it by setting "zeroAllowed?" to ON.&#xA;&#xA;LEVEL&#xA;\tYou can change the number of digits in the secret by
+setting the LEVEL you want to play. Level 1 will have 1 digit in secret number, LEVEL 2 will have 2 digits, LEVEL 3 : 3 digits, and so on...&#xA;</string>
+<string name="feedback">Bugs?</string>
+<string name="yes">Yes</string>
+<string name="no">No</string>
+<string name="sound">Sound</string>
+</resources>
