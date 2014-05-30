@@ -2,8 +2,8 @@
 <resources>
 
     <string name="start">start</string>
-    <string name="play_ass">Choose Level</string>
-    <string name="play">Basic(Level 3)</string>
+    <string name="play_ass">Choosen Level</string>
+    <string name="play">Basic (Level 3)</string>
     <string name="Instruction">Instructions Shown Here</string>
     <string name="guess">Think and Guess</string>
     <string name="makeGuess">Make This Guess</string>
