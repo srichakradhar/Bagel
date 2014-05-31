@@ -9,15 +9,17 @@ import android.text.Html;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
-public class Main extends Activity implements OnClickListener{
+public class Main extends Activity implements OnClickListener, OnCheckedChangeListener{
 	private MediaPlayer music;
 	EditText levelET;
 	Button Play, Play_ass;
-	ToggleButton zeroTB;
+	ToggleButton zeroTB, soundTB;
 	private TextView TvHowTo;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -28,12 +30,14 @@ public class Main extends Activity implements OnClickListener{
 		Play = (Button) findViewById(R.id.Play);
 		levelET = (EditText) findViewById(R.id.levelET);
 		zeroTB = (ToggleButton) findViewById(R.id.zeroToggleButton);
+		soundTB = (ToggleButton) findViewById(R.id.soundTB);
 		TvHowTo = (TextView) findViewById(R.id.TvHowTo);
 		//View relLayout = findViewById(R.id.relativeLayout);
 		
 		Play.setOnClickListener(this);
 		Play_ass.setOnClickListener(this);
 		TvHowTo.setOnClickListener(this);
+		soundTB.setOnCheckedChangeListener(this);
 		//AnimationDrawable progressAnimation = (AnimationDrawable) relLayout.getBackground();
 		//progressAnimation.start();
 		music = MediaPlayer.create(this, R.raw.bgm);
@@ -41,6 +45,11 @@ public class Main extends Activity implements OnClickListener{
 		music.setLooping(true);
 	}
 	
+	@Override
+	protected void onPause() {
+		music.pause();
+		super.onPause();
+	}
 	@Override
 	protected void onDestroy() {
 		music.stop();
@@ -66,5 +75,17 @@ public class Main extends Activity implements OnClickListener{
 			ad.setMessage(Html.fromHtml(getString(R.string.main_help)));
 			ad.show();
 		}
+	}
+
+	@Override
+	public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
+		if(arg0 == soundTB){
+			if(arg0.isChecked()){
+				music.start();
+			}else{
+				music.pause();
+			}
+		}
+		
 	}
 }

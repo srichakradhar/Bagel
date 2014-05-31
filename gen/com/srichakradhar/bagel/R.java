@@ -44,19 +44,20 @@ public final class R {
         public static final int editText1=0x7f090010;
         public static final int editText2=0x7f090011;
         public static final int editText3=0x7f090012;
-        public static final int feedback=0x7f090025;
+        public static final int feedback=0x7f090026;
         public static final int guessBtn=0x7f090013;
         public static final int guessButton=0x7f090003;
         public static final int guessEditText=0x7f090002;
-        public static final int help=0x7f090024;
+        public static final int help=0x7f090025;
         public static final int history=0x7f090006;
         public static final int historyTextView=0x7f090017;
         public static final int levelET=0x7f09001e;
         public static final int levelSelect=0x7f09001d;
         public static final int lives=0x7f090005;
-        public static final int new_game=0x7f090023;
+        public static final int new_game=0x7f090024;
         public static final int relativeLayout=0x7f09001b;
         public static final int scrollView=0x7f090000;
+        public static final int soundTB=0x7f090023;
         public static final int tableRow2=0x7f090007;
         public static final int tableRow3=0x7f09000f;
         public static final int tableRow4=0x7f09000b;
@@ -95,12 +96,15 @@ public final class R {
         public static final int makeGuess=0x7f060005;
         public static final int minus=0x7f06000e;
         public static final int new_game=0x7f060013;
+        public static final int no=0x7f060019;
         public static final int play=0x7f060002;
         public static final int play_ass=0x7f060001;
         public static final int plus=0x7f06000d;
         public static final int reference=0x7f060012;
+        public static final int sound=0x7f06001a;
         public static final int start=0x7f060000;
         public static final int title_activity_bagel=0x7f06000a;
+        public static final int yes=0x7f060018;
         public static final int zero_allowed=0x7f060011;
     }
     public static final class style {

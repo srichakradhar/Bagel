@@ -2,8 +2,8 @@
 <resources>
 
     <string name="start">start</string>
-    <string name="play_ass">Advanced(with Keypad)</string>
-    <string name="play">Basic(no Keypad)</string>
+    <string name="play_ass">Choosen Level</string>
+    <string name="play">Basic (Level 3)</string>
     <string name="Instruction">Instructions Shown Here</string>
     <string name="guess">Think and Guess</string>
     <string name="makeGuess">Make This Guess</string>
@@ -49,4 +49,7 @@ You can also get multiple clues after each guess.&#xA;\t Say the secret number i
 You can also get multiple clues after each guess.&#xA;\t Say the secret number is 456, and your guess is 546. The clues would be “fermi pico pico” because one digit is correct and in the correct place (the digit 6), and two digits are in the secret number but in the wrong place (the digits 4 and 5).&#xA;Settings for "ADVANCED" type :&#xA;ZERO ALLOWED?&#xA;&#xA;\tBy Default, 0 won\'t be included in the secret number. You can enable it by setting "zeroAllowed?" to ON.&#xA;&#xA;LEVEL&#xA;\tYou can change the number of digits in the secret by
 setting the LEVEL you want to play. Level 1 will have 1 digit in secret number, LEVEL 2 will have 2 digits, LEVEL 3 : 3 digits, and so on...&#xA;</string>
 <string name="feedback">Bugs?</string>
+<string name="yes">Yes</string>
+<string name="no">No</string>
+<string name="sound">Sound</string>
 </resources>
