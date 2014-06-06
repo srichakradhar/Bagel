@@ -17,7 +17,6 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnKeyListener;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,7 +31,7 @@ public class Bagel extends Activity {
 	Shuffler s = new Shuffler();
 	int[] a = new int[10];
 	int no[] = new int[level];
-	int lives = 10, score = 0, nogames = 1;
+	int tries = 0;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +45,6 @@ public class Bagel extends Activity {
 
 		// preferences = PreferenceManager.getDefaultSharedPreferences(this);
 		// zeroAllowed = preferences.getBoolean("zeroAllowed", false);
-		guessEditText.setText(getString(R.id.lives, lives));
 
 		Bundle extras = getIntent().getExtras();
 		if (extras != null) {
@@ -60,17 +58,16 @@ public class Bagel extends Activity {
 		InputFilter[] filterArray = new InputFilter[1];
 		filterArray[0] = new InputFilter.LengthFilter(level);
 		guessEditText.setFilters(filterArray);	// to set the size of EditText field to "level"
-		guessEditText.setOnKeyListener(new OnKeyListener() {
+	}
+		/*guessEditText.setOnKeyListener(new OnKeyListener() {
 		    public boolean onKey(View v, int keyCode, KeyEvent event) {
 		        if ((event.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
-		           check(guessEditText);
+		           Toast.makeText(HelloFormStuff.this, edittext.getText(), Toast.LENGTH_SHORT).show();
 		           return true;
 		      }
 		    return false;
 		  }
-	});
-	}
-		
+	}*/
 		
 	/*@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
@@ -125,18 +122,11 @@ public class Bagel extends Activity {
 				.setPositiveButton("Yes",
 						new DialogInterface.OnClickListener() {
 							public void onClick(DialogInterface dialog, int id) {
-								score += lives - 1;
 								newGame();
 							}
 						})
 				.setNegativeButton("No", new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int id) {
-						if(lives > 1)
-						score = (score + nogames + lives - 1 + (level >= 5 ? level : 0) + (zeroAllowed ? level : 0)) * nogames;
-						Log.d("Score","Lives = "+lives+ " Lives Left = " + (score - nogames + lives) +"\nLevel Bonus = "+ (level >= 5 ? level : 0) +
-								" Zero Allowed = "+(zeroAllowed ? level : 0)+"No. of games = "+nogames+" Score = "+ score);
-						//score = (1(right guess) + level >=5 + zeroChecked * level) * no. of games
-						Toast.makeText(getApplicationContext(), "Score : " + score, Toast.LENGTH_LONG).show();
 						finish();
 					}
 				}).setCancelable(false);
@@ -150,17 +140,14 @@ public class Bagel extends Activity {
 		guessEditText.requestFocus();
 		a = s.random(zeroAllowed ? 0 : 1);
 		no = Arrays.copyOf(a, level);
-		lives = 10;
-		nogames += 1;
-		livesTextView.setText(getString(R.id.lives, lives));
+		tries = 0;
 		historyTextView.setText("");
 		alertTextView.setText("clue");
 	}
 
 	public void check(View v) {
 		Log.i("no", Arrays.toString(no));
-		Log.d("lives", ""+lives);
-		if( lives < 2) {
+		if (tries > 8) {
 			showDialog();
 		} else {
 
@@ -178,7 +165,7 @@ public class Bagel extends Activity {
 							throw (new Exception("Equal"));
 					g = g / 10;
 				}
-				lives--;
+				tries++;
 			} catch (Exception e) {
 				if (e.getMessage().toString().equals("noZero"))
 					Toast.makeText(this.getApplicationContext(),
@@ -194,7 +181,7 @@ public class Bagel extends Activity {
 			} finally {
 				guessEditText.setText("");
 			}
-			livesTextView.setText(getString(R.string.lives, lives));
+			livesTextView.setText(getString(R.string.lives, 10 - tries));
 			ArrayList<String> clues = new ArrayList<String>();
 			if (Arrays.equals(gn, no)) {
 				alertTextView.setText("Well Guessed!");
@@ -210,12 +197,12 @@ public class Bagel extends Activity {
 						}
 					}
 				if (clues.size() == 0) {
-					clues.add("Bagels");
+					clues.add("Bagel");
 				}
 				Collections.shuffle(clues);
 				alertTextView.setText(clues.toString());
 				historyTextView.setText(historyTextView.getText().toString()
-						+ "\n" + lives + ". " + gi + " " + clues.toString());
+						+ "\n" + tries + ". " + gi + " " + clues.toString());
 				// Toast.makeText(this.getApplicationContext(), clues,
 				// Toast.LENGTH_SHORT).show();
 			}
