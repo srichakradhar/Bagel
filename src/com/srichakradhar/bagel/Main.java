@@ -3,8 +3,11 @@ package com.srichakradhar.bagel;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.text.Html;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -21,6 +24,8 @@ public class Main extends Activity implements OnClickListener, OnCheckedChangeLi
 	Button Play, Play_ass;
 	ToggleButton zeroTB, soundTB;
 	private TextView TvHowTo;
+	SharedPreferences preferences;
+	private boolean sound;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -33,6 +38,7 @@ public class Main extends Activity implements OnClickListener, OnCheckedChangeLi
 		soundTB = (ToggleButton) findViewById(R.id.soundTB);
 		TvHowTo = (TextView) findViewById(R.id.TvHowTo);
 		//View relLayout = findViewById(R.id.relativeLayout);
+		preferences = PreferenceManager.getDefaultSharedPreferences(this);
 		
 		Play.setOnClickListener(this);
 		Play_ass.setOnClickListener(this);
@@ -41,14 +47,31 @@ public class Main extends Activity implements OnClickListener, OnCheckedChangeLi
 		//AnimationDrawable progressAnimation = (AnimationDrawable) relLayout.getBackground();
 		//progressAnimation.start();
 		music = MediaPlayer.create(this, R.raw.bgm);
-		music.start();
-		music.setLooping(true);
+		sound = preferences.getBoolean("Sound", true);
+		if(sound){
+			music.start();
+			music.setLooping(true);
+		}
+		soundTB.setChecked(sound);
 	}
 	
 	@Override
 	protected void onPause() {
-		music.pause();
+		if(music.isPlaying())
+			music.pause();
+		Editor editor = preferences.edit();
+		editor.putBoolean("Sound", soundTB.isChecked());
+		editor.commit();
 		super.onPause();
+	}
+	
+	@Override
+	protected void onResume() {
+		if(soundTB.isChecked()){
+			music.start();
+			music.setLooping(true);
+		}
+		super.onResume();
 	}
 	@Override
 	protected void onDestroy() {
@@ -80,11 +103,13 @@ public class Main extends Activity implements OnClickListener, OnCheckedChangeLi
 	@Override
 	public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
 		if(arg0 == soundTB){
-			if(arg0.isChecked()){
+			if(arg0.isChecked() && !music.isPlaying()){
 				music.start();
-			}else{
+			}
+			if(!arg0.isChecked() && music.isPlaying()){
 				music.pause();
 			}
+//			(arg0.isChecked())?((music.isPlaying()) ? : music.start()):(music.isPlaying() ? music.pause() : );
 		}
 		
 	}

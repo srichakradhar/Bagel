@@ -23,7 +23,8 @@ public final class R {
     public static final class drawable {
         public static final int basic=0x7f020000;
         public static final int ic_launcher=0x7f020001;
-        public static final int thermostat=0x7f020002;
+        public static final int minimal19=0x7f020002;
+        public static final int thermostat=0x7f020003;
     }
     public static final class id {
         public static final int Bagles=0x7f09001c;
@@ -86,6 +87,7 @@ public final class R {
         public static final int feedback=0x7f060017;
         public static final int guess=0x7f060004;
         public static final int guessBtn=0x7f060009;
+        public static final int guessHint=0x7f06001b;
         public static final int hello_world=0x7f060008;
         public static final int help=0x7f060010;
         public static final int history=0x7f06000b;

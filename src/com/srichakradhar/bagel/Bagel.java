@@ -3,7 +3,6 @@ package com.srichakradhar.bagel;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -26,7 +25,7 @@ public class Bagel extends Activity {
 	EditText guessEditText;
 	TextView alertTextView, historyTextView, livesTextView;
 	View scrollView;
-	// SharedPreferences preferences;
+//	SharedPreferences preferences;
 	int level = 3;
 	boolean zeroAllowed = false;
 	Shuffler s = new Shuffler();
@@ -44,9 +43,8 @@ public class Bagel extends Activity {
 		historyTextView = (TextView) findViewById(R.id.history);
 		livesTextView = (TextView) findViewById(R.id.lives);
 
-		// preferences = PreferenceManager.getDefaultSharedPreferences(this);
 		// zeroAllowed = preferences.getBoolean("zeroAllowed", false);
-		guessEditText.setText(getString(R.id.lives, lives));
+		livesTextView.setText(getString(R.string.lives, lives));
 
 		Bundle extras = getIntent().getExtras();
 		if (extras != null) {
@@ -89,7 +87,6 @@ public class Bagel extends Activity {
 	}
 
 	public boolean onOptionsItemSelected(MenuItem item) {
-		// Editor editor = preferences.edit();
 		switch (item.getItemId()) {
 		case R.id.help:
 			AlertDialog ad = new AlertDialog.Builder(this).create();
@@ -100,8 +97,6 @@ public class Bagel extends Activity {
 		case R.id.new_game:
 			Toast.makeText(this.getApplicationContext(), "Secret was: "+Arrays.toString(no),Toast.LENGTH_SHORT).show();
 			newGame();
-			// editor.putBoolean("zeroAllowed", zeroAllowed);
-			// editor.commit();
 			return true;
 		case R.id.feedback:
 			Intent i = new Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto", "srichakra3nsr3@gmail.com", null));
@@ -132,7 +127,7 @@ public class Bagel extends Activity {
 				.setNegativeButton("No", new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int id) {
 						if(lives > 1)
-						score = (score + nogames + lives - 1 + (level >= 5 ? level : 0) + (zeroAllowed ? level : 0)) * nogames;
+						score = (score + nogames + lives - 1 + (level >= 5 ? level : 0) + (zeroAllowed ? 1 : 0)) * nogames;
 						Log.d("Score","Lives = "+lives+ " Lives Left = " + (score - nogames + lives) +"\nLevel Bonus = "+ (level >= 5 ? level : 0) +
 								" Zero Allowed = "+(zeroAllowed ? level : 0)+"No. of games = "+nogames+" Score = "+ score);
 						//score = (1(right guess) + level >=5 + zeroChecked * level) * no. of games
@@ -152,14 +147,14 @@ public class Bagel extends Activity {
 		no = Arrays.copyOf(a, level);
 		lives = 10;
 		nogames += 1;
-		livesTextView.setText(getString(R.id.lives, lives));
+		livesTextView.setText(getString(R.string.lives, lives));
 		historyTextView.setText("");
 		alertTextView.setText("clue");
 	}
 
 	public void check(View v) {
 		Log.i("no", Arrays.toString(no));
-		Log.d("lives", ""+lives);
+		//Log.d("lives", ""+lives);
 		if( lives < 2) {
 			showDialog();
 		} else {

@@ -2,7 +2,7 @@
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/basic" >
+    android:background="@drawable/minimal19" >
 
     <TableRow
         android:id="@+id/tableRow2"
@@ -201,8 +201,10 @@
         android:id="@+id/historyTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
         android:text="@string/history"
-        android:textColor="#ffffff"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#ffffff" />
 
 </TableLayout>

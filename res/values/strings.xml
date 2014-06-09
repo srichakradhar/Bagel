@@ -52,4 +52,5 @@ setting the LEVEL you want to play. Level 1 will have 1 digit in secret number, 
 <string name="yes">Yes</string>
 <string name="no">No</string>
 <string name="sound">Sound</string>
+<string name="guessHint">123</string>
 </resources>
