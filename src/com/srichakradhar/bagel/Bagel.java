@@ -3,6 +3,7 @@ package com.srichakradhar.bagel;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -17,6 +18,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnKeyListener;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,7 +29,9 @@ import android.widget.Toast;
 public class Bagel extends Activity {
 	EditText guessEditText;
 	TextView alertTextView, historyTextView, livesTextView;
-	View scrollView;
+	CheckBox autoSubmitCB;
+	Button guessButton;
+//	View scrollView;
 //	SharedPreferences preferences;
 	int level = 3;
 	boolean zeroAllowed = false;
@@ -42,9 +49,18 @@ public class Bagel extends Activity {
 		alertTextView = (TextView) findViewById(R.id.alertTextView);
 		historyTextView = (TextView) findViewById(R.id.history);
 		livesTextView = (TextView) findViewById(R.id.lives);
+		autoSubmitCB = (CheckBox) findViewById(R.id.checkBox1);
+		guessButton = (Button) findViewById(R.id.guessBtn);
 
 		// zeroAllowed = preferences.getBoolean("zeroAllowed", false);
 		livesTextView.setText(getString(R.string.lives, lives));
+/*		autoSubmitCB.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+			
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				guessButton.setEnabled(!isChecked);
+			}
+		});*/
 
 		Bundle extras = getIntent().getExtras();
 		if (extras != null) {
@@ -58,17 +74,40 @@ public class Bagel extends Activity {
 		InputFilter[] filterArray = new InputFilter[1];
 		filterArray[0] = new InputFilter.LengthFilter(level);
 		guessEditText.setFilters(filterArray);	// to set the size of EditText field to "level"
+		
 		guessEditText.setOnKeyListener(new OnKeyListener() {
 		    public boolean onKey(View v, int keyCode, KeyEvent event) {
 		        if ((event.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
-		           check(guessEditText);
+		           check(guessButton);
 		           return true;
+		      }else if((event.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_BACK)){
+		    	  
+		    	  AlertDialog.Builder builder = new AlertDialog.Builder(Bagel.this)
+					.setMessage("My Jaan! You've scored " + score + "! I won't suggest leaving now. You can always press HOME button and come back to continue. Leave?")
+					.setPositiveButton("Yes",
+							new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog, int id) {
+									Toast.makeText(getApplicationContext(), "Score : " + score, Toast.LENGTH_LONG).show();
+									finish();
+								}
+							})
+					.setNegativeButton("No", new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog, int id) {
+							Toast.makeText(getApplicationContext(), "That's good..! ;)", Toast.LENGTH_LONG).show();
+						}
+					});
+			AlertDialog dialog = builder.create();
+			dialog.show();
+			return true;
 		      }
+		      else if(autoSubmitCB.isChecked() && guessEditText.length() == level){
+		    		  check(guessButton);
+		    		  return true;
+		    	  }
 		    return false;
 		  }
 	});
 	}
-		
 		
 	/*@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
@@ -181,7 +220,7 @@ public class Bagel extends Activity {
 				/* */
 				else
 					Toast.makeText(this.getApplicationContext(),
-							"Please enter " + level + " different digits",
+							"No duplicates please! Enter " + level + " different digits",
 							Toast.LENGTH_SHORT).show();
 				/**/
 				guessEditText.requestFocus();
