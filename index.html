@@ -1,0 +1,107 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Bagel by srichakradhar</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Bagel</h1>
+        <p>Pico Fermi Bagel - A simple puzzle game for android.</p>
+
+        <p class="view"><a href="https://github.com/srichakradhar/Bagel">View the Project on GitHub <small>srichakradhar/Bagel</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/srichakradhar/Bagel/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/srichakradhar/Bagel/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/srichakradhar/Bagel">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a name="bagel" class="anchor" href="#bagel"><span class="octicon octicon-link"></span></a>Bagel</h1>
+
+<h3>
+<a name="bagel---a-simple-guessing-game-for-android" class="anchor" href="#bagel---a-simple-guessing-game-for-android"><span class="octicon octicon-link"></span></a>Bagel - A simple guessing game for android.</h3>
+
+<p><strong>Bagels</strong> (or PFB (Pico, Fermi, Bagels)) is a number guessing game, similar to MasterMind or Jotto.
+It is a math/logic game commonly taught to schoolchildren to help them develop deductive reasoning skills.</p>
+
+<ul>
+<li>I will generate a random secret number. It will have 3 digits. No two digits will be same.</li>
+<li>You have to guess that number using clues(shown under "history"). </li>
+<li>If I say “bagels”, that means that none of the three digits you guessed is in the secret number.</li>
+<li>If I say “pico”, then one of the digits in your guess is in the secret number, but it is in the wrong place.</li>
+<li>If I say “fermi”, then your guess has a correct digit in the correct place.</li>
+<li>Of course, even if you get a pico or fermi clue, you still don't know which digit in your guess is the correct one.</li>
+<li>You can also get multiple clues after each guess. </li>
+</ul><h3>
+<a name="as-an-example-lets-say-that-you-thought-of-the-secret-number-489" class="anchor" href="#as-an-example-lets-say-that-you-thought-of-the-secret-number-489"><span class="octicon octicon-link"></span></a>As an example, lets say that you thought of the secret number 489.</h3>
+
+<ul>
+<li>Guess 1: 362 Bagel - no digit is correct.</li>
+<li>Guess 2: 820 Pico - the 8 is in the wrong place.</li>
+<li>Guess 3: 418 Pico Fermi - the 8 is in the wrong place, the 4 is in the correct place.</li>
+<li>Guess 4: 518 Pico - the 8 is in the wrong place.</li>
+<li>Guess 5: 487 Fermi Fermi - the 4 and 8 are in the correct place.</li>
+<li>Guess 6: 489 Fermi Fermi Fermi - all digits are in the correct place.</li>
+</ul><p>House rules determine whether zero can be used or not. Decreasing the number of choices obviously makes the game easier. Hardcore players can test their skill by playing with a number larger than 3 digits(in Advanced mode). Have Fun!</p>
+
+<h3>
+<a name="in-basic-mode" class="anchor" href="#in-basic-mode"><span class="octicon octicon-link"></span></a>In "Basic" mode:</h3>
+
+<ul>
+<li>Adjust the digits using "up" and "down" buttons.</li>
+<li>Press "Make This Guess" to tell me your guess.You cannot guess same number again and again.</li>
+<li>Press &lt; and &gt; buttons to review these clues while playing.Select "New Game" from menu to end current game and start a new game.</li>
+<li>Duplicate guesses are not allowed and zero is not allowed.</li>
+</ul><h3>
+<a name="in-advanced-mode" class="anchor" href="#in-advanced-mode"><span class="octicon octicon-link"></span></a>In "Advanced" mode:</h3>
+
+<ul>
+<li>Check "zeroAllowed?" Toggle Button, if you want to include zero in secret number.</li>
+<li>Enter the LEVEL you want to play in the "level" EditText box. Level is same as the number of digits in the secret number.</li>
+<li>Now, press "Choosen Level" button to start playing.</li>
+<li>By default, "AutoSubmit" checkbox is checked which removes the need to press the "Guess" button every time and the "Guess" button is disabled. It will be enabled when the "AutoSubmit" checkbox is unchecked.</li>
+<li><p>Duplicate guesses are allowed.</p></li>
+<li><p>Here are similar games, you can play online : <a href="http://www.dst-corp.com/james/Bagels.html">http://www.dst-corp.com/james/Bagels.html</a>
+<a href="http://www.newbedford.k12.ma.us/elementary/gomes/stjohn/Subjects/Math/Pico,%20Fermi,%20Bagel/Pico,%20Fermi,%20Bagel.html">http://www.newbedford.k12.ma.us/elementary/gomes/stjohn/Subjects/Math/Pico,%20Fermi,%20Bagel/Pico,%20Fermi,%20Bagel.html</a></p></li>
+</ul><h4>
+<a name="news" class="anchor" href="#news"><span class="octicon octicon-link"></span></a>News:</h4>
+
+<ul>
+<li>Original inspiration came from "Invent Your Own Computer Games with Python" By Al Sweigart.
+1 day was what it took to make this app. So, please feel free to reach me through mail using in-app feedback.</li>
+<li>Post any suggestions on making the UI pleasant.</li>
+<li>Also, feel free to suggest any apps that you love to have and I'll try my best to make 'em..!</li>
+</ul>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/srichakradhar">srichakradhar</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-42224312-2");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
+</html>
