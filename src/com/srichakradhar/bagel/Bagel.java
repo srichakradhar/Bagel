@@ -10,8 +10,10 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.Html;
 import android.text.InputFilter;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -50,17 +52,19 @@ public class Bagel extends Activity {
 		historyTextView = (TextView) findViewById(R.id.history);
 		livesTextView = (TextView) findViewById(R.id.lives);
 		autoSubmitCB = (CheckBox) findViewById(R.id.checkBox1);
-		guessButton = (Button) findViewById(R.id.guessBtn);
+		guessButton = (Button) findViewById(R.id.bagelBtn);
 
 		// zeroAllowed = preferences.getBoolean("zeroAllowed", false);
 		livesTextView.setText(getString(R.string.lives, lives));
-/*		autoSubmitCB.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+		autoSubmitCB.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 			
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 				guessButton.setEnabled(!isChecked);
+				if(isChecked)
+					check(guessButton);
 			}
-		});*/
+		});
 
 		Bundle extras = getIntent().getExtras();
 		if (extras != null) {
@@ -100,13 +104,32 @@ public class Bagel extends Activity {
 			dialog.show();
 			return true;
 		      }
-		      else if(autoSubmitCB.isChecked() && guessEditText.length() == level){
-		    		  check(guessButton);
-		    		  return true;
-		    	  }
 		    return false;
 		  }
 	});
+		
+		guessEditText.addTextChangedListener(new TextWatcher() {
+			
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before, int count) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void afterTextChanged(Editable s) {
+				if(autoSubmitCB.isChecked() && guessEditText.length() == level){
+		    		  check(guessButton);
+				}
+			}
+		});
 	}
 		
 	/*@Override

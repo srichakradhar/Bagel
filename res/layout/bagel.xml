@@ -40,13 +40,14 @@
                 android:text="@string/autosubmit" />
 
             <Button
-                android:id="@+id/guessButton"
+                android:id="@+id/bagelBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.1"
                 android:onClick="check"
                 android:text="@string/guessBtn"
-                android:textColor="@android:color/background_light" />
+                android:textColor="@android:color/background_light"
+                android:enabled="false" />
         </LinearLayout>
 
         <LinearLayout

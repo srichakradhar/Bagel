@@ -36,6 +36,7 @@ public final class R {
         public static final int PrevInstr=0x7f090009;
         public static final int TvHowTo=0x7f090023;
         public static final int alertTextView=0x7f090005;
+        public static final int bagelBtn=0x7f090004;
         public static final int button1=0x7f09000f;
         public static final int button2=0x7f09000e;
         public static final int button3=0x7f09000d;
@@ -48,7 +49,6 @@ public final class R {
         public static final int editText3=0x7f090013;
         public static final int feedback=0x7f090027;
         public static final int guessBtn=0x7f090014;
-        public static final int guessButton=0x7f090004;
         public static final int guessEditText=0x7f090002;
         public static final int help=0x7f090026;
         public static final int history=0x7f090007;
