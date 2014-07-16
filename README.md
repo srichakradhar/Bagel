@@ -31,7 +31,8 @@ House rules determine whether zero can be used or not. Decreasing the number of 
 ###In "Advanced" mode:
 * Check "zeroAllowed?" Toggle Button, if you want to include zero in secret number.
 * Enter the LEVEL you want to play in the "level" EditText box. Level is same as the number of digits in the secret number.
-* Now, press "Advanced(with Keypad)" button to start playing.
+* Now, press "Choosen Level" button to start playing.
+* By default, "AutoSubmit" checkbox is checked which removes the need to press the "Guess" button every time and the "Guess" button is disabled. It will be enabled when the "AutoSubmit" checkbox is unchecked.
 * Duplicate guesses are allowed.
 
 
