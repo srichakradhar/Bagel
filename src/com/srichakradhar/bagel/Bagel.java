@@ -87,17 +87,17 @@ public class Bagel extends Activity {
 		      }else if((event.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_BACK)){
 		    	  
 		    	  AlertDialog.Builder builder = new AlertDialog.Builder(Bagel.this)
-					.setMessage("My Jaan! You've scored " + score + "! I won't suggest leaving now. You can always press HOME button and come back to continue. Leave?")
+					.setMessage("My Jaan! You've scored " + score + "!\nI won't suggest leaving now.\nYou can always press HOME button and come back to continue.\n\n\tReveal Secret and Quit?")
 					.setPositiveButton("Yes",
 							new DialogInterface.OnClickListener() {
 								public void onClick(DialogInterface dialog, int id) {
-									Toast.makeText(getApplicationContext(), "Score : " + score, Toast.LENGTH_LONG).show();
+									Toast.makeText(getApplicationContext(), "Secret was: "+Arrays.toString(no),Toast.LENGTH_LONG).show();
 									finish();
 								}
 							})
 					.setNegativeButton("No", new DialogInterface.OnClickListener() {
 						public void onClick(DialogInterface dialog, int id) {
-							Toast.makeText(getApplicationContext(), "That's good..! ;)", Toast.LENGTH_LONG).show();
+							Toast.makeText(getApplicationContext(), "That's good..! ;)", Toast.LENGTH_SHORT).show();
 						}
 					});
 			AlertDialog dialog = builder.create();

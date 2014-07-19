@@ -2,7 +2,7 @@
 <resources>
 
     <string name="start">start</string>
-    <string name="play_ass">Choosen Level</string>
+    <string name="play_ass">Chosen Level</string>
     <string name="play">Basic (Level 3)</string>
     <string name="Instruction">Instructions Shown Here</string>
     <string name="guess">Think and Guess</string>
@@ -12,7 +12,7 @@
     <string name="hello_world">Hello world!</string>
     <string name="guessBtn">Guess</string>
     <string name="title_activity_bagel">Bagel</string>
-    <string name="history">history</string>
+    <string name="history">History</string>
     <string name="lives">Lives : %d</string>
     <string name="plus">&#9650;</string>
     <string name="minus">&#9660;</string>
