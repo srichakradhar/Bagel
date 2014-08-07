@@ -8,7 +8,9 @@ import android.content.SharedPreferences.Editor;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.text.Editable;
 import android.text.Html;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -16,6 +18,7 @@ import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
 public class Main extends Activity implements OnClickListener, OnCheckedChangeListener{
@@ -44,6 +47,30 @@ public class Main extends Activity implements OnClickListener, OnCheckedChangeLi
 		Play_ass.setOnClickListener(this);
 		TvHowTo.setOnClickListener(this);
 		soundTB.setOnCheckedChangeListener(this);
+		levelET.addTextChangedListener(new TextWatcher() {
+			
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before, int count) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void afterTextChanged(Editable s) {
+				// TODO Auto-generated method stub
+				if(s.toString().equals("0")){
+					Toast.makeText(getApplicationContext(), "\tKidding? :D\nThere's no 0 level!", Toast.LENGTH_SHORT).show();
+					levelET.setText("1");
+				}
+			}
+		});
 		//AnimationDrawable progressAnimation = (AnimationDrawable) relLayout.getBackground();
 		//progressAnimation.start();
 		music = MediaPlayer.create(this, R.raw.bgm);

@@ -7,6 +7,7 @@ import java.util.Collections;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.DialogInterface.OnCancelListener;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -176,6 +177,7 @@ public class Bagel extends Activity {
 
 	public void showDialog() {
 		AlertDialog.Builder builder = new AlertDialog.Builder(this)
+				.setTitle("One more?")
 				.setMessage(
 						"Answer : " + Arrays.toString(no)
 								+ "\nWould you like to play another game?")
@@ -194,10 +196,19 @@ public class Bagel extends Activity {
 								" Zero Allowed = "+(zeroAllowed ? level : 0)+"No. of games = "+nogames+" Score = "+ score);
 						//score = (1(right guess) + level >=5 + zeroChecked * level) * no. of games
 						Toast.makeText(getApplicationContext(), "Score : " + score, Toast.LENGTH_LONG).show();
-						finish();
 					}
-				}).setCancelable(false);
+				});//.setCancelable(false);
 		AlertDialog dialog = builder.create();
+		dialog.setOnCancelListener(new OnCancelListener() {
+			
+			@Override
+			public void onCancel(DialogInterface dialog) {
+				autoSubmitCB.setChecked(false);
+				autoSubmitCB.setClickable(false);
+				guessButton.setEnabled(false);
+				Toast.makeText(getApplicationContext(), "Select \"New Game\" from menu to continue.", Toast.LENGTH_LONG).show();
+			}
+		});
 		dialog.show();
 	}
 
@@ -212,6 +223,8 @@ public class Bagel extends Activity {
 		livesTextView.setText(getString(R.string.lives, lives));
 		historyTextView.setText("");
 		alertTextView.setText("clue");
+		autoSubmitCB.setClickable(true);
+		autoSubmitCB.setChecked(true);
 	}
 
 	public void check(View v) {
