@@ -36,12 +36,12 @@ public class Bagel extends Activity {
 	Button guessButton;
 //	View scrollView;
 //	SharedPreferences preferences;
-	int level = 3;
+	int level = 3, lives = 10, nogames = 1, gi = 0;
 	boolean zeroAllowed = false;
 	Shuffler s = new Shuffler();
 	int[] a = new int[10];
 	int no[] = new int[level];
-	int lives = 10, score = 0, nogames = 1;
+	static int score = 0;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -92,7 +92,7 @@ public class Bagel extends Activity {
 					.setPositiveButton("Yes",
 							new DialogInterface.OnClickListener() {
 								public void onClick(DialogInterface dialog, int id) {
-									Toast.makeText(getApplicationContext(), "Secret was: "+Arrays.toString(no),Toast.LENGTH_LONG).show();
+									Toast.makeText(getApplicationContext(), "Secret was: " + gi,Toast.LENGTH_LONG).show();
 									finish();
 								}
 							})
@@ -112,17 +112,10 @@ public class Bagel extends Activity {
 		guessEditText.addTextChangedListener(new TextWatcher() {
 			
 			@Override
-			public void onTextChanged(CharSequence s, int start, int before, int count) {
-				// TODO Auto-generated method stub
-				
-			}
+			public void onTextChanged(CharSequence s, int start, int before, int count) {}
 			
 			@Override
-			public void beforeTextChanged(CharSequence s, int start, int count,
-					int after) {
-				// TODO Auto-generated method stub
-				
-			}
+			public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 			
 			@Override
 			public void afterTextChanged(Editable s) {
@@ -158,7 +151,7 @@ public class Bagel extends Activity {
 			ad.show();
 			return true;
 		case R.id.new_game:
-			Toast.makeText(this.getApplicationContext(), "Secret was: "+Arrays.toString(no),Toast.LENGTH_SHORT).show();
+			Toast.makeText(this.getApplicationContext(), "Secret was: "+ gi, Toast.LENGTH_SHORT).show();
 			newGame();
 			return true;
 		case R.id.feedback:
@@ -179,22 +172,16 @@ public class Bagel extends Activity {
 		AlertDialog.Builder builder = new AlertDialog.Builder(this)
 				.setTitle("One more?")
 				.setMessage(
-						"Answer : " + Arrays.toString(no)
+						"Answer : " + gi
 								+ "\nWould you like to play another game?")
 				.setPositiveButton("Yes",
 						new DialogInterface.OnClickListener() {
 							public void onClick(DialogInterface dialog, int id) {
-								score += lives - 1;
 								newGame();
 							}
 						})
 				.setNegativeButton("No", new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int id) {
-						if(lives > 1)
-						score = (score + nogames + lives - 1 + (level >= 5 ? level : 0) + (zeroAllowed ? 1 : 0)) * nogames;
-						Log.d("Score","Lives = "+lives+ " Lives Left = " + (score - nogames + lives) +"\nLevel Bonus = "+ (level >= 5 ? level : 0) +
-								" Zero Allowed = "+(zeroAllowed ? level : 0)+"No. of games = "+nogames+" Score = "+ score);
-						//score = (1(right guess) + level >=5 + zeroChecked * level) * no. of games
 						Toast.makeText(getApplicationContext(), "Score : " + score, Toast.LENGTH_LONG).show();
 					}
 				});//.setCancelable(false);
@@ -203,10 +190,8 @@ public class Bagel extends Activity {
 			
 			@Override
 			public void onCancel(DialogInterface dialog) {
-				autoSubmitCB.setChecked(false);
-				autoSubmitCB.setClickable(false);
-				guessButton.setEnabled(false);
-				Toast.makeText(getApplicationContext(), "Select \"New Game\" from menu to continue.", Toast.LENGTH_LONG).show();
+				guessEditText.setEnabled(false);
+				Toast.makeText(getApplicationContext(), "Select \"New Game\" from Menu to continue.", Toast.LENGTH_LONG).show();
 			}
 		});
 		dialog.show();
@@ -221,20 +206,17 @@ public class Bagel extends Activity {
 		lives = 10;
 		nogames += 1;
 		livesTextView.setText(getString(R.string.lives, lives));
-		historyTextView.setText("");
 		alertTextView.setText("clue");
-		autoSubmitCB.setClickable(true);
-		autoSubmitCB.setChecked(true);
+		guessEditText.setEnabled(true);
 	}
 
 	public void check(View v) {
-		Log.i("no", Arrays.toString(no));
+		historyTextView.setText("");
+		Log.i("no", "" + gi);
 		//Log.d("lives", ""+lives);
 		if( lives < 2) {
 			showDialog();
 		} else {
-
-			int gi = 0;
 			int gn[] = new int[level];
 			try {
 				gi = Integer.parseInt(guessEditText.getText().toString());
@@ -267,7 +249,10 @@ public class Bagel extends Activity {
 			livesTextView.setText(getString(R.string.lives, lives));
 			ArrayList<String> clues = new ArrayList<String>();
 			if (Arrays.equals(gn, no)) {
-				alertTextView.setText("Well Guessed!");
+				if(lives > 1)
+					score += 1 + lives - 1 + (level >= 5 ? level : 0) + (zeroAllowed ? 1 : 0);
+					//score = 1(right guess) + lives + level >=5 + zeroChecked * level
+				alertTextView.setText("Score: " + score + " Ans: " + gi);
 				showDialog();
 			} else {
 				for (int i = 0; i < level; i++)
@@ -283,11 +268,11 @@ public class Bagel extends Activity {
 					clues.add("Bagels");
 				}
 				Collections.shuffle(clues);
-				alertTextView.setText(clues.toString());
+				String cluesString = clues.toString();
+				cluesString = cluesString.substring(1, cluesString.length() - 1);
+				alertTextView.setText(cluesString);
 				historyTextView.setText(historyTextView.getText().toString()
-						+ "\n" + lives + ". " + gi + " " + clues.toString());
-				// Toast.makeText(this.getApplicationContext(), clues,
-				// Toast.LENGTH_SHORT).show();
+						 + lives + ". " + gi + " " + cluesString+ "\n");
 			}
 		}
 	}

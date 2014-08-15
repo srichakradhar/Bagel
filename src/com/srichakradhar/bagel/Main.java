@@ -66,7 +66,7 @@ public class Main extends Activity implements OnClickListener, OnCheckedChangeLi
 			public void afterTextChanged(Editable s) {
 				// TODO Auto-generated method stub
 				if(s.toString().equals("0")){
-					Toast.makeText(getApplicationContext(), "\tKidding? :D\nThere's no 0 level!", Toast.LENGTH_SHORT).show();
+					Toast.makeText(getApplicationContext(), "There's no 0 level!", Toast.LENGTH_SHORT).show();
 					levelET.setText("1");
 				}
 			}
